@@ -25,17 +25,17 @@ vector<int> counter ;	// 在LFU、MFU、LFU+LRU、MFU+LRU中使			   用，用�
 	function:
 		int main()		// 在成功讀檔後執行六種方法
 		bool Read()	// 讀檔
-		void FIFO()	// 從第一個page開始，先判斷是否有在buffer中，如						果沒有的話( !stored )，將f 設為 true、fault+1，如果						buffer的大小小於page_frame，就將此page放到buffer					的最前面；若buffer的大小等於page_frame，就將						buffer的最後一個移除，把此page放到buffer的第一						個。印出目前的page、buffer的所有page，如果f =true					則印出F，重複下一個page，直到所有page都執行完，					最後再印出page fault、replaces。
+		void FIFO()	// 從第一個page開始，先判斷是否有在buffer中，如果沒有的話( !stored )，將f 設為 true、fault+1，如果buffer的大小小於page_frame，就將此page放到buffer的最前面；若buffer的大小等於page_frame，就將buffer的最後一個移除，把此page放到buffer的第一個。印出目前的page、buffer的所有page，如果f=true則印出F，重複下一個page，直到所有page都執行完，最後再印出page fault、replaces。
 
-		void LRU()	// 與FIFO幾乎相同，唯一的差別在於當目前的page有					在buffer中的話 (store == true)，要將此page移到buffer					中的第一個，其他步驟街與FIFO相同。
+		void LRU()	// 與FIFO幾乎相同，唯一的差別在於當目前的page有在buffer中的話 (store == true)，要將此page移到buffer中的第一個，其他步驟街與FIFO相同。
 
-		vector<int> MakeCounter()	// 建立一個大小為page_ref中最大值得									vector，且全部預設為0。
+		vector<int> MakeCounter()	// 建立一個大小為page_ref中最大值得vector，且全部預設為0。
 
 
-		void LFU()	// 與FIFO相似，差別在於，當buffer的大小等於							page_frame時，是將buffer中的page在counter中最小					的移除，若相同則取最早加入的，再將目前的page放到					buffer的最前面，並將目前page在counter中的位置設						為0。當此page的處理結束後，會將此page在counter					的位置的值加一。其餘步驟皆與FIFO相同。
+		void LFU()	// 與FIFO相似，差別在於，當buffer的大小等於page_frame時，是將buffer中的page在counter中最小的移除，若相同則取最早加入的，再將目前的page放到buffer的最前面，並將目前page在counter中的位置設為0。當此page的處理結束後，會將此page在counter的位置的值加一。其餘步驟皆與FIFO相同。
 
-void MFU()	// 與LFU相同，只差在要移除時是取buffer在counter中最大的。
+		void MFU()	// 與LFU相同，只差在要移除時是取buffer在counter中最大的。
 
-		void LFU_LRU() // 與LFU幾乎相同，唯一的差別在於當目前的page有					在buffer中的話 (store == true)，要將此page移到buffer					中的第一個，其他步驟皆與LFU相同。
+		void LFU_LRU() // 與LFU幾乎相同，唯一的差別在於當目前的page有在buffer中的話 (store == true)，要將此page移到buffer中的第一個，其他步驟皆與LFU相同。
 
-		void MFU_LRU() // 與LFU_LRU相同，只差在要移除時是取buffer在							counter中最大的。
+		void MFU_LRU() // 與LFU_LRU相同，只差在要移除時是取buffer在counter中最大的。
